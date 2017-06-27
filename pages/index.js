@@ -1,24 +1,25 @@
 import React, { Component } from 'react'
-import { Providor } from 'react-redux'
+import { Provider } from 'react-redux'
 import reducers from '../reducers'
 import { getInitialStore } from '../store'
-
 import fetch from 'isomorphic-unfetch'
 
+import App from '../container/App'
 
 class Page extends Component {
-  static getInitialProps = async () => {
+  static getInitialProps = async ({req}) => {
     const res = await fetch('http://jsonplaceholder.typicode.com/users')
     const users = await res.json()
-    return { users }
+    return { users, isServer: !!req}
   }
   render() {
+    const store = getInitialStore(reducers, this.props.users, this.props.isServer)
     return (
-      <Providor store={ getInitialStore(reducers, users) }>
+      <Provider store={ store }>
         <App/>
-      </Providor>
+      </Provider>
     )
   }
 }
 
-export default App
+export default Page

@@ -10,16 +10,18 @@ import { combineReducers } from 'redux'
 const users = (state = [], {type, id, name, username, email}) => {
   switch (type){
     case ADD_USER:
-      return state.push({
+      return [...state, {
         id,
         name,
         username,
         email
-      })
+      }]
     case UPDATE_USER: 
       return state.map(user => user.id === id ? {id, name, username, email} : user)
     case REMOVE_USER:
       return state.filter(user => user.id !== id)
+    default:
+      return state
   }
 }
 
@@ -27,6 +29,8 @@ const activeUser = (state = 0, {type, id}) => {
   switch(type) {
     case CHANGE_ACTIVE_USER:
       return id
+    default:
+      return state
   }
 }
 
@@ -36,6 +40,8 @@ const viewMod = (state = 0, {type, mod}) => {
   switch(type) {
     case VIEW_MOD:
       return mod
+    default:
+      return state
   }
 }
 
