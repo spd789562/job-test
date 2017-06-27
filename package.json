@@ -1,0 +1,20 @@
+{
+  "name": "lesjob",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "ycun <2359151@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "isomorphic-unfetch": "^1.0.0",
+    "next": "^2.4.5",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "redux": "^3.7.1"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  }
+}
